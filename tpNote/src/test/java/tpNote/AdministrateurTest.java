@@ -63,7 +63,7 @@ public class AdministrateurTest {
 
         int stockActuel = admin.listeMateriel().size();
         Ecran ecran = new Ecran();
-        e.listeMateriel().add(ecran);
+        e.listeMateriel().add(ecran);	//Ajout d'un ecran dans le stock de l'entreprise car attribuer() verife que le materiel est bien dans l'entreprise
         ((Administrateur) admin).attribuerMateriel(ecran, admin);
 
         Assert.assertEquals("attribuerMateriel: fail", stockActuel+1, admin.listeMateriel().size());
