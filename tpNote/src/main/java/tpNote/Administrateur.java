@@ -9,61 +9,37 @@ public class Administrateur extends Employe {
 		super(a, e);
 	}
 
+
+
 	public boolean attribuerMateriel(Empruntable m, Emprunteur e) {
 		if (e instanceof Entreprise) {
 			return false;
 		} else {
 			if (e instanceof Agence) {
-				//if(((Agence) e).getEntreprise().listeMateriel().remove(m)) {
+				if(((Agence) e).getEntreprise().listeMateriel().remove(m)) {
 					e.listeMateriel().add(m);
 					return true;
-				//}else {
-				//	return false;
-			//	}
-			} else if (e instanceof Employe && !m.isLimitationPretAgence()) {
-				//if (!m.isLimitationPretAgence()) {
-				//	if(((Employe) e).getEntreprise().listeMateriel().remove(m)) {
-						e.listeMateriel().add(m);
-						return true;
-				/*	}else {
-						System.out.println("err 6");
-						return false;
-					}*/
-				//}
-				return false;
-
-		}
-	}
-
-/*	
-	public boolean attribuerMateriel(Empruntable m, Emprunteur e) {
-		if (e instanceof Entreprise) {
-			return false;
-		} else {
-			if (e instanceof Agence) {
-				//if(((Agence) e).getEntreprise().listeMateriel().remove(m)) {
-					e.listeMateriel().add(m);
-					return true;
-				//}else {
-				//	return false;
-			//	}
+				}else {
+					return false;
+				}
 			} else if (e instanceof Employe) {
 				if (m.isLimitationPretAgence()) {
 					return false;
 				} else {
-				//	if(((Employe) e).getEntreprise().listeMateriel().remove(m)) {
+					if(((Employe) e).getEntreprise().listeMateriel().remove(m)) {
 						e.listeMateriel().add(m);
 						return true;
-				//	}else {
-				//		System.out.println("err 6");
-				//		return false;
-				//	}
+					}else {
+						System.out.println("err 6");
+						return false;
+					}
 				}
 			} else {
 				return false;
 			}
 		}
-	}*/
+	}
+	
 	public boolean recupererMateriel(Empruntable m, Emprunteur e) {
 		if (e instanceof Agence) {
 			e.listeMateriel().remove(m);

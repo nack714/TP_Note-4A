@@ -62,7 +62,9 @@ public class AdministrateurTest {
     public void attribuerMateriel() {
 
         int stockActuel = admin.listeMateriel().size();
-        ((Administrateur) admin).attribuerMateriel(new Ecran(), admin);
+        Ecran ecran = new Ecran();
+        e.listeMateriel().add(ecran);
+        ((Administrateur) admin).attribuerMateriel(ecran, admin);
 
         Assert.assertEquals("attribuerMateriel: fail", stockActuel+1, admin.listeMateriel().size());
     }
