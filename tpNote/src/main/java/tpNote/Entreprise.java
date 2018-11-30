@@ -20,7 +20,9 @@ public class Entreprise extends Emprunteur {
 		agences.add(a);		
 	}
 	
-	public List<Agence> getAgence() {
+	public List<Agence> getAgences() {
 		return agences;
 	}
+	
+	
 }

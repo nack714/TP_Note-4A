@@ -11,37 +11,45 @@ public class Administrateur extends Employe {
 
 	public boolean attribuerMateriel(Empruntable m, Emprunteur e) {
 		if (e instanceof Entreprise) {
+			System.out.println("err 1");
 			return false;
 		} else {
 			if (e instanceof Agence) {
 				if(((Agence) e).getEntreprise().listeMateriel().remove(m)) {
 					e.listeMateriel().add(m);
 					return true;
+				}else {
+					System.out.println("err 5");
+					return false;
 				}
-			} else if (e instanceof Employe) {
+			} else if (e instanceof Employe || e instanceof Administrateur) {
 				if (m.isLimitationPretAgence()) {
+					System.out.println("err 2");
 					return false;
 				} else {
 					if(((Employe) e).getEntreprise().listeMateriel().remove(m)) {
 						e.listeMateriel().add(m);
 						return true;
+					}else {
+						System.out.println("err 6");
+						return false;
 					}
 				}
 			} else {
+				System.out.println("err 3");
 				return false;
 			}
 		}
-		return false;
 	}
 
-	public boolean recuperMateriel(Empruntable m, Emprunteur e) {
+	public boolean recupererMateriel(Empruntable m, Emprunteur e) {
 		if (e instanceof Agence) {
 			e.listeMateriel().remove(m);
-			((Agence) e).getEntreprise().listeMateriel().add(m);
+			listeMateriel().add(m);
 			return true;
 		} else if (e instanceof Employe) {
 			e.listeMateriel().remove(m);
-			((Employe) e).getEntreprise().listeMateriel().add(m);
+			listeMateriel().add(m);
 			return true;
 		} else {
 			return false;
@@ -51,7 +59,7 @@ public class Administrateur extends Employe {
 	public List<Empruntable> stockEntreprise() {
 		List<Empruntable> stock = new ArrayList<Empruntable>();
 		stock.addAll(entreprise.listeMateriel());
-		for (Agence a : entreprise.getAgence()) {
+		for (Agence a : entreprise.getAgences()) {
 			stock.addAll(a.listeMateriel());
 		}
 		return stock;
@@ -91,12 +99,16 @@ public class Administrateur extends Employe {
 		supprimerMaterielDefectueuxDe(a);
 	}
 	
+	public void supprimerMaterielDefectueuxAgence() {
+		supprimerMaterielDefectueuxDe(agence);
+	}
+	
 
 	
 	public void supprimerMaterielDefectueuxDe(Emprunteur e) {
-		for(Empruntable m:e.listeMateriel()) {
-			if(m.isDefectueux()) {
-				entreprise.listeMateriel().remove(m);
+		for(int i=0;i<e.listeMateriel().size();i++) {
+			if(e.listeMateriel().get(i).isDefectueux()) {
+				e.listeMateriel().remove(e.listeMateriel().get(i));
 			}
 		}
 	}
