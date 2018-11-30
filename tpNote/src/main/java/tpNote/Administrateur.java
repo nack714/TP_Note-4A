@@ -3,7 +3,11 @@ package tpNote;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Administrateur extends Employe {
+	private static final Logger logger = LogManager.getLogger();
 
 	public Administrateur(Agence a, Entreprise e) {
 		super(a, e);
@@ -18,6 +22,7 @@ public class Administrateur extends Employe {
 			if (e instanceof Agence) {
 				if(((Agence) e).getEntreprise().listeMateriel().remove(m)) {
 					e.listeMateriel().add(m);
+					logger.info("Attribution d'un "+m.getClass()+ " pour un "+e.getClass() );
 					return true;
 				}else {
 					return false;
@@ -28,6 +33,7 @@ public class Administrateur extends Employe {
 				} else {
 					if(((Employe) e).getEntreprise().listeMateriel().remove(m)) {
 						e.listeMateriel().add(m);
+						logger.info("Attribution d'un "+m.getClass()+ " pour un "+e.getClass() );
 						return true;
 					}else {
 						System.out.println("err 6");
@@ -81,6 +87,7 @@ public class Administrateur extends Employe {
 		if ( !(e2 instanceof Employe && m.isLimitationPretAgence() )) {
 			if (e1.listeMateriel().remove(m)) {
 				e2.listeMateriel().add(m);
+				logger.info("Transfere d'un "+m.getClass()+" depuis " +e1.getClass()+ " pour un "+e2.getClass() );
 			}
 		}
 	}
