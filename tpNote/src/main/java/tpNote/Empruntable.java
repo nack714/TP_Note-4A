@@ -15,7 +15,6 @@ public abstract class Empruntable {
 	}
 	public void setLimitationPretAgence(boolean limitation) {
 		limitationPretAgence = limitation;
-	}
-	
+	}	
 	
 }
