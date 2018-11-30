@@ -11,32 +11,28 @@ public class Administrateur extends Employe {
 
 	public boolean attribuerMateriel(Empruntable m, Emprunteur e) {
 		if (e instanceof Entreprise) {
-			System.out.println("err 1");
 			return false;
 		} else {
 			if (e instanceof Agence) {
-				if(((Agence) e).getEntreprise().listeMateriel().remove(m)) {
+				//if(((Agence) e).getEntreprise().listeMateriel().remove(m)) {
 					e.listeMateriel().add(m);
 					return true;
-				}else {
-					System.out.println("err 5");
-					return false;
-				}
-			} else if (e instanceof Employe || e instanceof Administrateur) {
+				//}else {
+				//	return false;
+			//	}
+			} else if (e instanceof Employe) {
 				if (m.isLimitationPretAgence()) {
-					System.out.println("err 2");
 					return false;
 				} else {
-					if(((Employe) e).getEntreprise().listeMateriel().remove(m)) {
+				//	if(((Employe) e).getEntreprise().listeMateriel().remove(m)) {
 						e.listeMateriel().add(m);
 						return true;
-					}else {
+				/*	}else {
 						System.out.println("err 6");
 						return false;
-					}
+					}*/
 				}
 			} else {
-				System.out.println("err 3");
 				return false;
 			}
 		}
@@ -80,7 +76,7 @@ public class Administrateur extends Employe {
 	
 
 	public void transfererMateriel(Emprunteur e1, Empruntable m, Emprunteur e2) {
-		if (!(e2 instanceof Employe && m.isLimitationPretAgence() )) {
+		if ( !(e2 instanceof Employe && m.isLimitationPretAgence() )) {
 			if (e1.listeMateriel().remove(m)) {
 				e2.listeMateriel().add(m);
 			}
