@@ -110,5 +110,9 @@ public class Administrateur extends Employe {
 			}
 		}
 	}
+	
+	public void achatMateriel(Empruntable m) {
+		entreprise.listeMateriel().add(m);
+	}
 
 }
