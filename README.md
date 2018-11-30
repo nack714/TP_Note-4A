@@ -30,5 +30,11 @@ public  void  setMembre(String str) {
   liste.add(Integer.parseInt(str));
 }
 
-b)
+d)
+table = une table d'une BDD
+column = colionne d'une table
+
+e)
+Gestionnaire de dependances maven
+
 
